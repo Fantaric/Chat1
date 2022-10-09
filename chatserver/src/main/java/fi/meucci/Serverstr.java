@@ -12,14 +12,24 @@ public class Serverstr {
     BufferedReader in;
     DataOutputStream out;
 
+    public void porta()
+    {
+        try
+        {
+            server = new ServerSocket(6789);
+
+        } catch(Exception e)
+        {
+            System.out.println("Errore durante l'apertura della porta del server");
+        }
+       
+    }
     public Socket attendi()
     {
         try
         {
             System.out.println("Server partito in esecuzione");
-            server = new ServerSocket(6789);
             client = server.accept();
-            server.close();
 
 
             in = new BufferedReader(new InputStreamReader(client.getInputStream()));
