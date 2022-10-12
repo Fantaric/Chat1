@@ -1,3 +1,4 @@
 *.xml
 *.class
-/target
+chatclient/target
+chatserver/target

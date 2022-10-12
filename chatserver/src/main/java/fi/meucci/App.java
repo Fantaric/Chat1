@@ -1,16 +1,14 @@
 package fi.meucci;
 
-public class App 
-{
-    public static void main( String[] args )
-    {
+public class App {
+    public static void main(String[] args) {
         Serverstr server = new Serverstr();
-        server.porta();
-        while(true)
-        {
-            server.attendi();
-            server.comunica();
+
+        try {
+            server.avvia();
+        } catch (Exception e) {
+            System.out.println("Errore durante l'avvio del server");
         }
-        
+
     }
 }
