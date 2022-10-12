@@ -6,7 +6,11 @@ public class App
     {
         Client2 client = new Client2();
         client.connetti();
-        client.comunica();
+        
+        
+            client.comunica();
+        
+        
         
     }
 }
