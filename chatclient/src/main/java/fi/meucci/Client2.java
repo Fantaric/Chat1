@@ -46,6 +46,8 @@ public class Client2 {
                     mySocket.close();
                     return;
                 }
+
+
                     
     
                 System.out.println("Invio la stringa al server e attendo");
