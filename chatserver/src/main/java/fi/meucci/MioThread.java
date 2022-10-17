@@ -1,22 +1,18 @@
 package fi.meucci;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.io.*;
+import java.net.*;
 import java.util.ArrayList;
 
 public class MioThread extends Thread {
 
     ServerSocket server;
     Socket client;
-    ArrayList<MioThread> thread;
+    ArrayList<Socket> S;
 
-    public MioThread(Socket client, ArrayList<MioThread> thread, ServerSocket server) {
+    public MioThread(Socket client, ArrayList<Socket> S, ServerSocket server) {
         this.client = client;
-        this.thread = thread;
+        this.S = S;
         this.server = server;
     }
 
@@ -46,10 +42,14 @@ public class MioThread extends Thread {
             out.writeBytes(strModificata + '\n');
 
             if (strModificata.equals("SPEGNI")) {
-                for (MioThread mioThread : thread) {
-                    mioThread.client.close();
+                for (Socket sock : S) {
+                    sock.close();
                 }
                 server.close();
+            }
+            if(strModificata.equals("FINE")){
+                client.close();
+                break;
             }
 
         }

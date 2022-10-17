@@ -18,7 +18,6 @@ public class Client2 {
 
         try {
             mySocket = new Socket(nomeServer, portaServer);
-            
 
         } catch (UnknownHostException e) {
             System.err.println("Host sconosciuto");
@@ -32,39 +31,35 @@ public class Client2 {
     }
 
     public void comunica() {
-        while(true)
-        {
+        while (true) {
             try {
                 tastiera = new BufferedReader(new InputStreamReader(System.in));
                 out = new DataOutputStream(mySocket.getOutputStream());
                 in = new BufferedReader(new InputStreamReader(mySocket.getInputStream()));
                 System.out.println("Inserisci la stringa da trasmettere al server " + '\n');
                 stringaUtente = tastiera.readLine();
-    
-                if(stringaUtente.equals("FINE"))
-                {
+
+                if (stringaUtente.equals("FINE")) {
                     mySocket.close();
                     return;
                 }
-    
+                if (stringaUtente.equals("SPEGNI")) {
+                    return;
+                }
 
                 System.out.println("Invio la stringa al server e attendo");
                 out.writeBytes(stringaUtente + '\n');
                 stringaServer = in.readLine();
-    
                 System.out.println("Risposta dal server: " + stringaServer + '\n');
-                if(stringaServer.equals("SPEGNI"))
-                {
-                    return;
-                }
+
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 System.out.println("Errore durante la comunicazione al server");
                 System.exit(1);
             }
-    
+
         }
-        
+
     }
 
 }

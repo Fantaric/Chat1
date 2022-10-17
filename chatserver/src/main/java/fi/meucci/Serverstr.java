@@ -13,11 +13,11 @@ public class Serverstr {
     public Socket avvia() throws IOException {
 
         ServerSocket server = new ServerSocket(6789);
-        ArrayList<MioThread> thread = new ArrayList<>();
+        ArrayList<Socket> S = new ArrayList<>();
         for (;;) {
             client = server.accept();
-            MioThread t1 = new MioThread(client, thread, server);
-            thread.add(t1);
+            MioThread t1 = new MioThread(client, S, server);
+            S.add(client);
             t1.start();
 
         }
