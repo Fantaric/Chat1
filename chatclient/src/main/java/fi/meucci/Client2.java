@@ -46,16 +46,17 @@ public class Client2 {
                     mySocket.close();
                     return;
                 }
-
-
-                    
     
+
                 System.out.println("Invio la stringa al server e attendo");
                 out.writeBytes(stringaUtente + '\n');
                 stringaServer = in.readLine();
     
                 System.out.println("Risposta dal server: " + stringaServer + '\n');
-       
+                if(stringaServer.equals("SPEGNI"))
+                {
+                    return;
+                }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 System.out.println("Errore durante la comunicazione al server");
