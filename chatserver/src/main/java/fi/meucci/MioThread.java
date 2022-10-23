@@ -25,10 +25,7 @@ public class MioThread extends Thread {
     public void run() {
         try {
             comunica();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("errore");
-        }
+        } catch (Exception e) {}
 
     }
 

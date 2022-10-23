@@ -26,11 +26,12 @@ public class ThreadRicevi extends Thread {
             }
            
             if (stringaServer.equals("SPEGNI")){
-                System.out.println("Chiusi tutti i socket e la porta del server");
+                System.out.println("\nChiusi tutti i socket e la porta del server");
                 c.exit(stringaServer);
                 return;
             }
             System.out.println("Risposta dal server: " + stringaServer + '\n');
+            System.out.print("Inserisci la stringa da trasmettere al server: ");
         }
     }
 

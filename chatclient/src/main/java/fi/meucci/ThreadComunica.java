@@ -20,10 +20,11 @@ public class ThreadComunica extends Thread {
         try {
             DataOutputStream out = new DataOutputStream(mySocket.getOutputStream());
             BufferedReader tastiera = new BufferedReader(new InputStreamReader(System.in));
+            
+            System.out.print("Inserisci la stringa da trasmettere al server: ");
 
             while (true) {
-
-                System.out.println("Inserisci la stringa da trasmettere al server " + '\n');
+                
                 String stringaUtente = tastiera.readLine();
 
                 if (stringaUtente.equals("FINE") || stringaUtente.equals("SPEGNI") || str.equals("SPEGNI")) {

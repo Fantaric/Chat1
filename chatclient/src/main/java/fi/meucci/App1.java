@@ -13,7 +13,6 @@ public class App1 {
             mysocket = client.connetti();
             ThreadComunica tCom = new ThreadComunica(mysocket);
             Thread tRic = new ThreadRicevi(mysocket, tCom);
-            tRic.join();
             tCom.start();
             tRic.start();
             
