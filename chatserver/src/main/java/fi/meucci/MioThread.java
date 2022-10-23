@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
 
+
 public class MioThread extends Thread {
 
     ServerSocket server;
@@ -25,6 +26,7 @@ public class MioThread extends Thread {
         try {
             comunica();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             System.out.println("errore");
         }
 
@@ -38,21 +40,26 @@ public class MioThread extends Thread {
 
             String strRicevuta = in.readLine();
 
-            String strModificata = strRicevuta.toUpperCase();
-            out.writeBytes(strModificata + '\n');
+            if(strRicevuta.equals("FINE")){
+                out.writeBytes("FINE" + "\n");
+                return;
+            }
 
-            if (strModificata.equals("SPEGNI")) {
+            else if (strRicevuta.equals("SPEGNI")) {
+
                 for (Socket sock : S) {
+                    DataOutputStream Out = new DataOutputStream(sock.getOutputStream());
+                    Out.writeBytes("SPEGNI" + "\n");
                     sock.close();
                 }
                 server.close();
+                return;
+            }else{
+                String strModificata = strRicevuta.toUpperCase();
+                out.writeBytes(strModificata + '\n');
             }
-            if(strModificata.equals("FINE")){
-                client.close();
-                break;
-            }
-
         }
 
     }
 }
+ 
